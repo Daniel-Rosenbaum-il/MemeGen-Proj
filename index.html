@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <title>MemeGen-Daniel-Rosenbaum</title>
+</head>
+
+<body onload="onInit()">
+    <header class="main-header">
+        <img src="img/logo/logo.png" class="img-logo" alt="Logo" width="150" height="150">
+        <nav class="main-nav">
+            <ul class="main-nav-info clean-list">
+                <li><a class="gallery" href="#">gallery</a></li>
+                <li><a class="about" href="#">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="images-container">
+
+        </section>
+
+        <div class="meme-container" hidden>
+            <canvas height="500" width="500">
+            </canvas>
+            <!-- maybe use as list with pic icons -->
+            <div class="meme-controller">
+                <input type="text" id="myInput" name="txt-line" class="txt-line" placeholder="Enter text here"
+                    oninput="onEnterText(this.value)">
+                <div class="line-crud">
+                    <img src="img/icons/up-arrow.png" class="img-controller" onclick="onChangePosUp()">
+                    <img src="img/icons/down-arrow.png" class="img-controller" onclick="onChangePosDown()">
+                    <img src="img/icons/up-and-down-opposite-double-arrows-side-by-side.png" class="img-controller"
+                        onclick="setSelectedLine()">
+                    <img src="img/icons/add.png" class="img-controller" onclick="onCreateLine()">
+                    <img src="img/icons/trash.png" class="img-controller" onclick="onRemoveLine()">
+                </div>
+                <div class="font-editing">
+                    <img src="img/icons/increase font - icon.png" class="img-controller" onclick="SetFontSizeUp()">
+                    <img src="img/icons/decrease font - icon.png" class="img-controller" onclick="SetFontSizeDown()">
+                    <img src="img/icons/align-to-left.png" class="img-controller" onclick="SetTextAlign('start')">
+                    <img src="img/icons/center-text-alignment.png" class="img-controller"
+                        onclick="SetTextAlign('center')">
+                    <img src="img/icons/align-to-right.png" class="img-controller" onclick="SetTextAlign('end')">
+                    <select name="font-family" class="font-select" oninput="SetFontFamily(this.value)">
+                        <option value="Impact">Impact</option>
+                        <option value="Verdana">Verdana</option>
+                        <option value="Arial">Arial</option>
+                    </select>
+                </div>
+                <div class="color-editing">
+                    <button class="btn-color"><img src="img/icons/text-stroke.png" class="img-controller">
+                        <input type="color" value="#ff0000" class="input-color" oninput="onChangeStroke(this.value)" />
+                    </button>
+                    <button class="btn-color"><img src="img/icons/paint-board-and-brush.png" class="img-controller">
+                        <input type="color" value="#ff0000" class="input-color" oninput="onChangeFill(this.value)" />
+                    </button>
+                </div>
+                <div class="share">
+                    <span class="share-btn"><a href="#" onclick="backToGallery(this)" download="">Back</a></span>
+                    <span class="share-btn"><a href="#" onclick="downloadMeme(this)" download="">download</a></span>
+                </div>
+            </div>
+        </div>
+
+        <section class="personal-info">
+
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <img src="img/logo/logo.png" class="img-logo" alt="Logo" width="150" height="150">
+        <h5>MemeGen - Created by Daniel Rosenbaum</h5>
+    </footer>
+
+    <script src="js/util-service.js"></script>
+    <script src="js/storage-service.js"></script>
+    <script src="js/memegen-service.js"></script>
+    <script src="js/memegen-controller.js"></script>
+</body>
+
+</html>
