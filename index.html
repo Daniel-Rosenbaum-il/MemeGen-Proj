@@ -20,16 +20,16 @@
         </nav>
     </header>
 
-    <main class="main-content">
-        <section class="images-container">
+    <main class="main-content flex column ">
+        <section class="images-container justify-content">
 
         </section>
 
-        <div class="meme-container" hidden>
-            <canvas height="500" width="500">
+        <div class="meme-container column" hidden>
+            <canvas height="350" width="350">
             </canvas>
             <!-- maybe use as list with pic icons -->
-            <div class="meme-controller">
+            <div class="meme-controller flex column justify-content align-center">
                 <input type="text" id="myInput" name="txt-line" class="txt-line" placeholder="Enter text here"
                     oninput="onEnterText(this.value)">
                 <div class="line-crud">
@@ -62,7 +62,7 @@
                     </button>
                 </div>
                 <div class="share">
-                    <span class="share-btn"><a href="#" onclick="backToGallery(this)" download="">Back</a></span>
+                    <span class="share-btn"><a href="#" onclick="backToGallery(this)">Back</a></span>
                     <span class="share-btn"><a href="#" onclick="downloadMeme(this)" download="">download</a></span>
                 </div>
             </div>

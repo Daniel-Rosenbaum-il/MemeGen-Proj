@@ -60,12 +60,11 @@ a {
     
 }
 .images-container img{
-    /* to change ratio of pics use pdf about ratio in every media querry */
    display: flex;
    flex-wrap: wrap;
     padding: 5px;
-    width: 175px;
-    height: 140px;
+    width: 140px;
+    height: 110px;
     cursor: pointer;
 }
 img:hover{
@@ -81,18 +80,22 @@ img:hover{
     padding-bottom: 15px;
 }
 .meme-controller{
-    width: 200px;
+    width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 canvas{
-    /* display: flex; */
-    max-width: 500px;
-    max-height: 500px;
+    width: 100%;
+    display: flex;
+    /* width: 300px;
+    height: 300px; */
+    max-width: 350px;
+    max-height: 350px;
     border: 1px solid black;
-    margin-inline-start: 25px;
-    margin-inline-end: 55px;
+    
+    margin: auto;
 }
 
 .img-controller{
@@ -211,3 +214,44 @@ background-color: #ff7f00;
     margin:0;
     padding: 0;
 }
+
+@media (min-width: 700px) {
+   .meme-controller{
+       width: 50%;
+   } 
+.meme-container{
+    flex-direction: row;
+}
+canvas{
+    width: 100%;
+    /* width: 350px; */
+    /* height: 350px; */
+    margin-inline-start: 25px;
+    margin-inline-end: 55px;
+}
+.images-container img{
+    width: 185px;
+    height: 150px;
+}
+}
+/* take toogle menu  - put btn on html */
+@media (max-width:700px){
+        .main-nav-info{
+            flex-direction:column;
+            position:fixed;
+            right:0;
+            top:0;
+            height:100vh;
+            background-color: #ff7f00;
+            transform: translateX(100%);
+            transition: transform .6s;
+        }
+        .main-nav-info a{
+            display:block;
+            text-align: right;
+            height: 100px;
+            width: 100px;
+            padding: 10px;
+            transition: background-color .3s;
+        }
+    }

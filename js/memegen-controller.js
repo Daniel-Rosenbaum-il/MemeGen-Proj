@@ -30,7 +30,7 @@ function renderCanvas() {
     let meme = getMeme();
     const image = new Image();
     image.src = `./img/meme-imgs (square)/${meme.selectedImgId}.jpg`;
-    drawImageProp(gCtx, image, 0, 0, image.width, image.height);
+    drawImageProp(gCtx, image, 0, 0, gCanvas.width, gCanvas.height,);
     meme.lines.forEach(line => {
         drawText(line.txt, line.lineX, line.lineY, line.size, line.stroke, line.fill, line.highLight, line.align, line.fontSize, line.fontFamily)
     });
