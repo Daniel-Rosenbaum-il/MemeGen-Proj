@@ -94,7 +94,6 @@ function createLine() {
         gMeme.lines[gMeme.selectedLineIdx - 1].highLight = 0
         gMeme.lines[gMeme.selectedLineIdx].highLight = 30
     }
-    console.log(gMeme.selectedLineIdx);
 }
 function selectLine() {
     gMeme.selectedLineIdx++
