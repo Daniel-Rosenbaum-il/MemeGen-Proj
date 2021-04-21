@@ -39,6 +39,26 @@ a {
     height: 33px;
     width: 50px;
 }
+.btn-menu{
+    display: inline-block;
+    cursor: pointer;
+}
+.bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+.open .bar1 {
+    transform: rotate(-45deg) translate(-9px, 6px);
+  }
+  
+.open .bar2 {opacity: 0;}
+  
+.open .bar3 {
+    transform: rotate(45deg) translate(-8px, -8px);
+  }
 
 .img-logo{
     width: 133px;
@@ -218,21 +238,24 @@ background-color: #ff7f00;
 @media (min-width: 700px) {
    .meme-controller{
        width: 50%;
-   } 
-.meme-container{
+    } 
+    .meme-container{
     flex-direction: row;
-}
-canvas{
+    }
+    canvas{
     width: 100%;
     /* width: 350px; */
     /* height: 350px; */
     margin-inline-start: 25px;
     margin-inline-end: 55px;
-}
-.images-container img{
+    }
+    .images-container img{
     width: 185px;
     height: 150px;
-}
+    }
+    .btn-menu{
+        display: none;
+    }
 }
 /* take toogle menu  - put btn on html */
 @media (max-width:700px){
@@ -253,5 +276,11 @@ canvas{
             width: 100px;
             padding: 10px;
             transition: background-color .3s;
+        }
+        .main-nav-info a:first-child{
+            margin-top: 50px;
+        }
+        body.menu-open .main-nav-info{
+            transform: translateX(0);
         }
     }
