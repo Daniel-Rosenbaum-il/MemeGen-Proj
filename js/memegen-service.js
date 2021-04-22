@@ -31,6 +31,7 @@ function createImgs() {
             createImg(12, ['actors']),
             createImg(13, ['happy', 'actors']),
             createImg(14, ['gay', 'actors']),
+            createImg(19, ['gay', 'babys']),
 
         ]
     };
