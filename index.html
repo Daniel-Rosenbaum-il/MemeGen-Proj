@@ -25,6 +25,9 @@
         </nav>
     </header>
 
+    <div class="search-container flex justify-content align-center">
+        <input type="text" class="search-input" placeholder="Enter search keywords" oninput="setSearchFilter(this.value)">
+    </div>
     <main class="main-content flex column ">
         <section class="images-container justify-content">
 
@@ -33,7 +36,6 @@
         <div class="meme-container column" hidden>
             <canvas height="350" width="350">
             </canvas>
-            <!-- maybe use as list with pic icons -->
             <div class="meme-controller flex column justify-content align-center">
                 <input type="text" id="myInput" name="txt-line" class="txt-line" placeholder="Enter text here"
                     oninput="onEnterText(this.value)">
@@ -81,7 +83,7 @@
 
     <footer class="main-footer">
         <img src="./img/logo/LOGO.png" class="img-logo" alt="Logo" width="150" height="150">
-        <h5>MemeGen - Created by Daniel Rosenbaum</h5>
+        <h4>MemeGen - Created by Daniel Rosenbaum</h5>
     </footer>
 
     <script src="js/util-service.js"></script>

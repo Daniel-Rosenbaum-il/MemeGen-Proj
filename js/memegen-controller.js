@@ -13,8 +13,8 @@ function onInit() {
     setLinesPos(gCanvas.width, gCanvas.height);
 }
 
-function renderImgs() {
-    const imgs = getImgs();
+function renderImgs(keyWord) {
+    const imgs = getImgs(keyWord);
     let strHtmls = imgs.map(img => {
         return `<img src="img/meme-imgs (square)/${img.id}.jpg" alt="img-1" onclick="onSelectedImg(${img.id})" class="img-gallery">`
     })
@@ -24,6 +24,7 @@ function onSelectedImg(elImgIdx) {
     setImgIdx(+elImgIdx);
     document.querySelector('.meme-container').style.display = 'flex'
     document.querySelector('.images-container').style.display = 'none'
+    document.querySelector('.search-container').style.display = 'none'
     renderCanvas();
 }
 function renderCanvas() {
@@ -108,10 +109,15 @@ function onRemoveLine() {
     renderCanvas();
 }
 function backToGallery(){
-    document.querySelector('.meme-container').style.display = 'none'
-    document.querySelector('.images-container').style.display = 'flex'
+    document.querySelector('.meme-container').style.display = 'none';
+    document.querySelector('.images-container').style.display = 'flex';
+    document.querySelector('.search-container').style.display = 'flex';
+
 }
 function onToggleMenu(elMenu) {
     elMenu.classList.toggle("open");
     document.body.classList.toggle('menu-open');
+}
+function setSearchFilter(keyWord){
+    renderImgs(keyWord);
 }
