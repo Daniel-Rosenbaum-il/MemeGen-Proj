@@ -13,8 +13,10 @@ var gMeme = {
     lines: []
 }
 createImgs()
+// fix the loadFromStorage and decide when/if to use
 function createImgs() {
-    let imgs = loadFromStorage(IMGSKEY);
+    let imgs;
+    // = loadFromStorage(IMGSKEY);
     if (!imgs || imgs.length === 0) {
         imgs = [
             createImg(1, ['politics', 'actors']),
