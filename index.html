@@ -11,24 +11,33 @@
 
 <body onload="onInit()">
     <header class="main-header">
-        <img src="./img/logo/LOGO.png" class="img-logo" alt="Logo" width="150" height="150">
+        <img src="./img/logo/LOGO.png" class="img-logo" alt="Logo" width="150" height="150" onclick="backToGallery()">
         <nav class="main-nav">
             <ul class="main-nav-info clean-list">
-                <li><a class="gallery" href="#">gallery</a></li>
+                <li><a class="gallery" href="#" onclick="backToGallery()">gallery</a></li>
+                <li><a class="saved-mems-link" href="#" onclick="openSavedMeme()">Memes</a></li>
                 <li><a class="about" href="#">About</a></li>
             </ul>
             <div class="btn-menu" onclick="onToggleMenu(this)">
                 <div class="bar1"></div>
                 <div class="bar2"></div>
                 <div class="bar3"></div>
-              </div>
+            </div>
         </nav>
     </header>
-
-    <div class="search-container flex justify-content align-center">
-        <input type="text" class="search-input" placeholder="Enter search keywords" oninput="setSearchFilter(this.value)">
+    
+    <div class="search-container flex column justify-content align-center">
+        <input list="search-filter" name="search-filter" class="search-input" placeholder="Enter search keywords" oninput="setSearchFilter(this.value)">
+        <datalist id="search-filter">
+        </datalist>
+        <ul class="keywords-list flex row wrap justify-content clean-list">
+            <!-- <li class="keyword-tag" onclick="onSetSearchTag('actors')">actors</li> -->
+        </ul>
     </div>
+    <!--  -->
     <main class="main-content flex column ">
+        <div class="saved-memes-container wrap justify-content align-center" hidden>
+        </div>
         <section class="images-container justify-content">
 
         </section>
@@ -48,13 +57,13 @@
                     <img src="img/icons/trash.png" class="img-controller" onclick="onRemoveLine()">
                 </div>
                 <div class="font-editing">
-                    <img src="img/icons/increase font - icon.png" class="img-controller" onclick="SetFontSizeUp()">
-                    <img src="img/icons/decrease font - icon.png" class="img-controller" onclick="SetFontSizeDown()">
-                    <img src="img/icons/align-to-left.png" class="img-controller" onclick="SetTextAlign('start')">
+                    <img src="img/icons/increase font - icon.png" class="img-controller" onclick="onSetFontSizeUp()">
+                    <img src="img/icons/decrease font - icon.png" class="img-controller" onclick="onSetFontSizeDown()">
+                    <img src="img/icons/align-to-left.png" class="img-controller" onclick="onSetTextAlign('start')">
                     <img src="img/icons/center-text-alignment.png" class="img-controller"
-                        onclick="SetTextAlign('center')">
-                    <img src="img/icons/align-to-right.png" class="img-controller" onclick="SetTextAlign('end')">
-                    <select name="font-family" class="font-select" oninput="SetFontFamily(this.value)">
+                        onclick="onSetTextAlign('center')">
+                    <img src="img/icons/align-to-right.png" class="img-controller" onclick="onSetTextAlign('end')">
+                    <select name="font-family" class="font-select" oninput="onSetFontFamily(this.value)">
                         <option value="Impact">Impact</option>
                         <option value="Verdana">Verdana</option>
                         <option value="Arial">Arial</option>
@@ -69,13 +78,13 @@
                     </button>
                 </div>
                 <div class="share">
-                    <span class="share-btn"><a href="#" onclick="backToGallery(this)">Back</a></span>
                     <span class="share-btn"><a href="#" onclick="downloadMeme(this)" download="">download</a></span>
+                    <span class="share-btn"><a href="#" onclick="onSaveMeme()">Save</span>
                 </div>
             </div>
         </div>
 
-        <section class="personal-info">
+        <section class="personal-info ">
 
         </section>
 

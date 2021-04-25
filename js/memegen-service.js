@@ -1,12 +1,14 @@
 'use strict'
 const IMGSKEY = 'imgsDB'
+const KEYWORDSKEY = 'keyWordsDB'
+const MEMESKEY = 'memesDB'
 
 
-var gKeywords = { 'happy': 12, 'actors': 1, 'animals': 3, 'politics': 4, 'cute': 5, 'babys': 6, 'funny': 7, 'gay': 8 }
+var gKeyWords = getKeyWords();
 var gImgs;
 var gCanvasWidth;
 var gCanvasHeight;
-var gMemes = [];
+var gMemes = getSavedMemes();
 var gMeme = {
     selectedImgId: 0,
     selectedLineIdx: 0,
@@ -15,8 +17,7 @@ var gMeme = {
 createImgs()
 // fix the loadFromStorage and decide when/if to use
 function createImgs() {
-    let imgs;
-    // = loadFromStorage(IMGSKEY);
+    let imgs = loadFromStorage(IMGSKEY);
     if (!imgs || imgs.length === 0) {
         imgs = [
             createImg(1, ['politics', 'actors']),
@@ -61,13 +62,38 @@ function getImgs(keyWord) {
     if (keyWord){
         var searchedImgs = gImgs.filter(img => {
             return img.keywords.find(key =>{
-                return key === keyWord;
+                return key.includes(keyWord);
             })
         })
         return searchedImgs;
     }else {
         return gImgs;
     }
+}
+function getKeyWords(){
+    let keyWords = loadFromStorage(KEYWORDSKEY);
+    if (!keyWords || keyWords.length === 0){
+        keyWords = {'reset': 16, 'happy': 12, 'actors': 12, 'animals': 12, 'politics': 12, 'cute': 12, 'babys': 12, 'funny': 12}
+        gKeyWords = keyWords;
+        _saveKeyWordsToStorage();
+    }
+    return keyWords;
+}
+function getSavedMemes(){
+    let savedMemes = loadFromStorage(MEMESKEY);
+    return savedMemes;
+}
+function setMeme(idx){
+    console.log(gMemes);
+    gMeme = loadFromStorage(MEMESKEY)[idx].meme;
+    console.log(gMemes[idx].meme);
+}
+function getMeme() {
+    return gMeme;
+}
+function setSearchTagSize(tag){
+   if (gKeyWords[tag] > 28) return ; gKeyWords[tag] += 2;
+   _saveKeyWordsToStorage();
 }
 function enterText(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt;
@@ -88,7 +114,7 @@ function createLine() {
         fontSize: 30,
         fontFamily: 'Impact',
         lineX: gCanvasWidth / 2,
-        lineY: 100,
+        lineY: 50,
         highLight: 30,
     }
     if (!gMeme.lines || gMeme.lines.length === 0) {
@@ -132,9 +158,6 @@ function changeStroke(color) {
 function changeFill(color) {
     gMeme.lines[gMeme.selectedLineIdx].fill = color;
 }
-function getMeme() {
-    return gMeme;
-}
 function textAlign(str) {
     gMeme.lines[gMeme.selectedLineIdx].align = str;
     if (str === 'start') {
@@ -145,18 +168,29 @@ function textAlign(str) {
         gMeme.lines[gMeme.selectedLineIdx].lineX = gCanvasWidth / 2;
 
     }
-
 }
 function fontSizeUp() {
     gMeme.lines[gMeme.selectedLineIdx].fontSize += 5;
 }
-
 function fontSizeDown() {
     gMeme.lines[gMeme.selectedLineIdx].fontSize -= 5;
 }
 function fontFamily(str) {
     gMeme.lines[gMeme.selectedLineIdx].fontFamily = str;
 }
+function saveMeme(memeImgData){
+    gMemes = loadFromStorage(MEMESKEY);
+    if (!gMemes || gMemes === 0) gMemes = [];
+    gMemes.push({meme:gMeme, img:memeImgData})
+    console.log(gMemes);
+    _saveMemsToStorage()
+}
 function _saveImgsToStorage() {
     saveToStorage(IMGSKEY, gImgs);
+}
+function _saveMemsToStorage() {
+    saveToStorage(MEMESKEY, gMemes);
+}
+function _saveKeyWordsToStorage(){
+    saveToStorage(KEYWORDSKEY, gKeyWords);
 }
