@@ -31,6 +31,7 @@ function openMemeGenSection(){
     document.querySelector('.images-container').style.display = 'none'
     document.querySelector('.search-container').style.display = 'none'
     document.querySelector('.saved-memes-container').style.display = 'none';
+    document.querySelector('.txt-line').value = '';
 }
 function renderCanvas(isShareAction) {
     let meme = getMeme();
